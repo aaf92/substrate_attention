@@ -62,8 +62,7 @@ class KinaseSubstrateAttentionModel(nn.Module):
             nn.Linear(hidden_dim, hidden_dim // 2),
             nn.ReLU(),
             nn.Dropout(dropout),
-            nn.Linear(hidden_dim // 2, 1),
-            nn.Sigmoid()  # Output probability
+            nn.Linear(hidden_dim // 2, 1)
         )
         
     def forward(self, kinase_embedding, substrate_encoded):

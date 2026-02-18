@@ -38,12 +38,16 @@ def evaluate(model, dataloader, criterion, device):
             substrate_enc = batch['substrate_encoded'].to(device)
             labels = batch['label'].to(device)
 
-            predictions, _ = model(kinase_emb, substrate_enc)
-            predictions = predictions.squeeze()
+            logits, _ = model(kinase_emb, substrate_enc)  # Now returns logits
+            logits = logits.squeeze()
 
-            loss = criterion(predictions, labels)
+            # Compute loss on logits (BCEWithLogitsLoss expects logits)
+            loss = criterion(logits, labels)
             total_loss += loss.item()
 
+            # Convert logits to probabilities for metrics
+            predictions = torch.sigmoid(logits)
+            
             all_predictions.extend(predictions.cpu().numpy())
             all_labels.extend(labels.cpu().numpy())
 
@@ -198,7 +202,18 @@ def main():
     # ======================================================================
     # Training Setup
     # ======================================================================
-    criterion = nn.BCELoss()
+    # Calculate pos_weight dynamically based on class imbalance
+    num_pos = int(train_df['label'].sum())
+    num_neg = int((train_df['label'] == 0).sum())
+    pos_weight_value = num_neg / num_pos
+
+    print(f"\nClass imbalance in training set:")
+    print(f"  Positives: {num_pos}")
+    print(f"  Negatives: {num_neg}")
+    print(f"  Ratio (neg:pos): {num_neg/num_pos:.2f}:1")
+    print(f"  Positive weight: {pos_weight_value:.2f}")
+    pos_weight = torch.tensor([pos_weight_value]).to(device)
+    criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     optimizer = optim.Adam(model.parameters(), lr=config["training"]["learning_rate"])
 
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(

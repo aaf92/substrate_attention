@@ -86,7 +86,7 @@ def encode_substrate_sequence(kmer):
 
 def create_train_val_test_splits(df, train_ratio=0.7, val_ratio=0.15, test_ratio=0.15, random_seed=42):
     """
-    Create stratified train/val/test splits preserving 1:2 pos:neg ratio.
+    Create stratified train/val/test splits preserving pos:neg ratio.
     
     Args:
         df: DataFrame with training examples

@@ -42,21 +42,21 @@ At optimal threshold = 0.23:
 
 02/18/2026:
 model.py
-- tried training with 1:10 pos:neg training example ratio
+- Added 10x weighting for positive examples loss and removed sigmoid at end of forward pass (just logits, no probability now).
 ============================================================
 PERFORMANCE SUMMARY
 ============================================================
-AUC-ROC:              0.8544
-Average Precision:    0.3971
+AUC-ROC:              0.8574
+Average Precision:    0.4010
 Baseline (random):    0.0909
 
 At threshold = 0.5:
-  Precision:          0.5476
-  Recall:             0.2489
-  F1:                 0.3422
+  Precision:          0.2505
+  Recall:             0.7899
+  F1:                 0.3804
 
-At optimal threshold = 0.23:
-  Precision:          0.4295
-  Recall:             0.4884
-  F1:                 0.4570
+At optimal threshold = 0.77:
+  Precision:          0.4263
+  Recall:             0.4990
+  F1:                 0.4598
 ============================================================

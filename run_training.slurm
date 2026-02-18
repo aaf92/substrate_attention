@@ -21,7 +21,7 @@ mkdir -p logs
 # Config
 # ============================================
 
-CONFIG_PATH="/ix/djishnu/Aaron_F/ES_interact/Code/substrate_attention/configs/attention_v1.yaml"
+CONFIG_PATH="/ix/djishnu/Aaron_F/ES_interact/Code/substrate_attention/configs/attention_v2.yaml"
 
 # Extract save_dir from YAML
 SAVE_DIR=$(python -c "import yaml; print(yaml.safe_load(open('${CONFIG_PATH}'))['experiment']['save_dir'])")
