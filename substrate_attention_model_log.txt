@@ -1,0 +1,62 @@
+02/02/2026:
+model.py
+- tried training with 1:2 pos:neg training example ratio
+============================================================
+PERFORMANCE SUMMARY
+============================================================
+AUC-ROC:              0.8541
+Average Precision:    0.7348
+Baseline (random):    0.3334
+
+At threshold = 0.5:
+  Precision:          0.7228
+  Recall:             0.6105
+  F1:                 0.6620
+
+At optimal threshold = 0.36:
+  Precision:          0.6343
+  Recall:             0.7781
+  F1:                 0.6989
+============================================================
+
+02/17/2026:
+v1_model.py
+- tried training with 1:10 pos:neg training example ratio
+============================================================
+PERFORMANCE SUMMARY
+============================================================
+AUC-ROC:              0.8544
+Average Precision:    0.3971
+Baseline (random):    0.0909
+
+At threshold = 0.5:
+  Precision:          0.5476
+  Recall:             0.2489
+  F1:                 0.3422
+
+At optimal threshold = 0.23:
+  Precision:          0.4295
+  Recall:             0.4884
+  F1:                 0.4570
+============================================================
+
+02/18/2026:
+model.py
+- tried training with 1:10 pos:neg training example ratio
+============================================================
+PERFORMANCE SUMMARY
+============================================================
+AUC-ROC:              0.8544
+Average Precision:    0.3971
+Baseline (random):    0.0909
+
+At threshold = 0.5:
+  Precision:          0.5476
+  Recall:             0.2489
+  F1:                 0.3422
+
+At optimal threshold = 0.23:
+  Precision:          0.4295
+  Recall:             0.4884
+  F1:                 0.4570
+============================================================
